@@ -42,11 +42,7 @@ def parse_url(url):
     :param url: The URL to search through.
     :return: List of all non-stopwords within a text.
     """
-    try:
-        scraped_data = urllib.request.urlopen(url)
-    except urllib.error.HTTPError as e:
-        print("HTTP Error {} while trying to open {}".format(e.code, e.url))
-        exit(1)
+    scraped_data = urllib.request.urlopen(url)
 
     # scraped_data may be undefined, but if the try above fails, this will never be executed.
     article = scraped_data.read()
@@ -95,7 +91,7 @@ def get_top_sim_words(text, top_w = 12):
 
     # Make word2vec object converting all words within all_words that occur more than once.
     word2vec = Word2Vec(text, min_count=2)
-    vocab = word2vec.wv.vocab
+    # vocab = word2vec.wv.vocab
 
     # Lists for final top results
     top_nouns = []
@@ -132,7 +128,12 @@ def get_top_sim_words(text, top_w = 12):
 def main():
     urls = get_url()
     for u in urls:
-        all_words = parse_url(u)
+        try:
+            print(u)
+            all_words = parse_url(u)
+        except urllib.error.HTTPError as e:
+            print("HTTP Error {} while trying to open {}".format(e.code, e.url))
+            continue
         top_results = get_top_sim_words(all_words, 12)
         print("\nTOP RESULTS FOR {}".format(u))
         print("NOUNS: {}\nVERBS: {}\nADJECTIVES: {}\n".format(top_results[0], top_results[1], top_results[2]))
@@ -140,22 +141,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-# TODO: Export top results data to spreadsheet
-#   e.g [KEYWORD] | [nouns] | [verbs] | [adjectives] | [similarity value]
-
-# TODO: Input list of URLs, execute code for each URL and export results into spreadsheet
-
-# TODO: DONE Make better input functions. Do all inputs on one line separated by commas
-
-
-# TODO: DONE Get top 6 Nouns, verbs, adjectives each
-# TODO: DONE Search via multiple keywords
-# TODO: DONE Refine results to only nouns, verbs, and adjectives
-# TODO: HANDLED Prevent 'KeyError: "word 'x' not in vocabulary'
-# TODO: MOSTLY Make more accurate results
-# TODO: MAYBE Scrape any website, not just wikipedia
-# TODO: Insert and organize results into excel doc
