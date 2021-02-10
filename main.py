@@ -44,7 +44,6 @@ def parse_url(url):
     """
     scraped_data = urllib.request.urlopen(url)
 
-    # scraped_data may be undefined, but if the try above fails, this will never be executed.
     article = scraped_data.read()
 
     parsed_article = bs.BeautifulSoup(article, 'lxml')
