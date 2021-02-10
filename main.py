@@ -18,21 +18,21 @@ def get_url():
     """
     :return: List of URLs from user input separated by spaces.
     """
-    return [i for i in input("Enter URLs: ").split()]
+    return [i for i in input("Enter URLs (separated by a space): ").split()]
 
 
 def get_pos_terms():
     """
     :return: List of positive contributor terms from user input separated by spaces.
     """
-    return [i for i in input("Enter positive contributors: ").split()]
+    return [i for i in input("Enter positive contributors (separated by a space): ").split()]
 
 
 def get_neg_terms():
     """
     :return: List of negative contributor terms from user input separated by spaces.
     """
-    return [i for i in input("Enter negative contributors: ").split()]
+    return [i for i in input("Enter negative contributors (separated by a space): ").split()]
 
 
 def parse_url(url):
