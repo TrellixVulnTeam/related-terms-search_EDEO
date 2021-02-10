@@ -101,7 +101,7 @@ def get_top_sim_words(text, top_w = 12):
     for i in range(len(pos_terms)):
         try:
             # Get 100 similar words using pos_terms and neg_terms
-            sim_words = word2vec.wv.most_similar(positive=pos_terms[i], negative=neg_terms, topn=100)
+            sim_words = word2vec.wv.most_similar(positive=pos_terms, negative=neg_terms, topn=100)
 
             # print("TERM={}:".format(pos_terms[i]))
             for j in range(len(sim_words)):
