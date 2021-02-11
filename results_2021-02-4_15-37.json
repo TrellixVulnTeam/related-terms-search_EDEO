@@ -1,0 +1,232 @@
+[
+  "https://en.wikipedia.org/wiki/Artificial_intelligence",
+  "POSITIVE WORDS: ['human']",
+  "NEGATIVE WORDS: []",
+  "NOUNS:",
+  [
+    {
+      "WORD": "ai",
+      "SIMILARITY": 0.5132274031639099,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "intelligence",
+      "SIMILARITY": 0.48747801780700684,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "mind",
+      "SIMILARITY": 0.4804633855819702,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "recognition",
+      "SIMILARITY": 0.4270045757293701,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "theory",
+      "SIMILARITY": 0.4262527823448181,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "applications",
+      "SIMILARITY": 0.42565637826919556,
+      "POS": "NNS"
+    }
+  ],
+  [
+    {
+      "WORD": "work",
+      "SIMILARITY": 0.41925621032714844,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "world",
+      "SIMILARITY": 0.4096163511276245,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "development",
+      "SIMILARITY": 0.40477490425109863,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "future",
+      "SIMILARITY": 0.40461885929107666,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "science",
+      "SIMILARITY": 0.40325284004211426,
+      "POS": "NN"
+    }
+  ],
+  [
+    {
+      "WORD": "attempt",
+      "SIMILARITY": 0.39700090885162354,
+      "POS": "NN"
+    }
+  ],
+  "VERBS:",
+  [
+    {
+      "WORD": "understanding",
+      "SIMILARITY": 0.38323402404785156,
+      "POS": "VBG"
+    }
+  ],
+  [
+    {
+      "WORD": "required",
+      "SIMILARITY": 0.37721890211105347,
+      "POS": "VBN"
+    }
+  ],
+  [
+    {
+      "WORD": "considered",
+      "SIMILARITY": 0.3651377260684967,
+      "POS": "VBN"
+    }
+  ],
+  [
+    {
+      "WORD": "find",
+      "SIMILARITY": 0.3510059714317322,
+      "POS": "VB"
+    }
+  ],
+  [
+    {
+      "WORD": "known",
+      "SIMILARITY": 0.3430250287055969,
+      "POS": "VBN"
+    }
+  ],
+  [
+    {
+      "WORD": "learning",
+      "SIMILARITY": 0.33395037055015564,
+      "POS": "VBG"
+    }
+  ],
+  [
+    {
+      "WORD": "improve",
+      "SIMILARITY": 0.28855353593826294,
+      "POS": "VB"
+    }
+  ],
+  [
+    {
+      "WORD": "reasoning",
+      "SIMILARITY": 0.282915323972702,
+      "POS": "VBG"
+    }
+  ],
+  [
+    {
+      "WORD": "including",
+      "SIMILARITY": 0.2729339599609375,
+      "POS": "VBG"
+    }
+  ],
+  "ADJECTIVES:",
+  [
+    {
+      "WORD": "real",
+      "SIMILARITY": 0.46611839532852173,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "large",
+      "SIMILARITY": 0.43594977259635925,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "autonomous",
+      "SIMILARITY": 0.3957597315311432,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "artificial",
+      "SIMILARITY": 0.3885866105556488,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "different",
+      "SIMILARITY": 0.3256891369819641,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "new",
+      "SIMILARITY": 0.32369816303253174,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "ethical",
+      "SIMILARITY": 0.31606733798980713,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "old",
+      "SIMILARITY": 0.30961695313453674,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "united",
+      "SIMILARITY": 0.3026290535926819,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "classical",
+      "SIMILARITY": 0.29906797409057617,
+      "POS": "JJ"
+    }
+  ],
+  [
+    {
+      "WORD": "strong",
+      "SIMILARITY": 0.2761716842651367,
+      "POS": "JJ"
+    }
+  ]
+]
