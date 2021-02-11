@@ -12,27 +12,28 @@ import nltk
 from nltk.corpus import stopwords
 from gensim.models import Word2Vec
 import spacy
+import json
 
 
 def get_url():
     """
     :return: List of URLs from user input separated by spaces.
     """
-    return [i for i in input("Enter URLs (separated by a space): ").split()]
+    return [i for i in input("Enter URLs (separated by spaces): ").split()]
 
 
 def get_pos_terms():
     """
     :return: List of positive contributor terms from user input separated by spaces.
     """
-    return [i for i in input("Enter positive contributors (separated by a space): ").split()]
+    return [i for i in input("Enter positive contributors (separated by spaces): ").split()]
 
 
 def get_neg_terms():
     """
     :return: List of negative contributor terms from user input separated by spaces.
     """
-    return [i for i in input("Enter negative contributors (separated by a space): ").split()]
+    return [i for i in input("Enter negative contributors (separated by spaces): ").split()]
 
 
 def parse_url(url):
@@ -76,7 +77,7 @@ def parse_url(url):
     return words
 
 
-def get_top_sim_words(text, top_w = 12):
+def get_top_nvj(text, top_w=12, pos=[], neg=[]):
     """
     Get the top 'top_w' nouns, verbs, and adjectives related to the positive contributors and negative contributors.
 
@@ -84,23 +85,19 @@ def get_top_sim_words(text, top_w = 12):
     :param top_w: The number of nouns, verbs, and adjectives, each, the function will attempt to find.
     :return: List of lists containing top nouns, verbs, adjectives.
     """
-    # Get input for positive and negative keywords
-    pos_terms = get_pos_terms()
-    neg_terms = get_neg_terms()
 
     # Make word2vec object converting all words within all_words that occur more than once.
     word2vec = Word2Vec(text, min_count=2)
-    # vocab = word2vec.wv.vocab
 
     # Lists for final top results
     top_nouns = []
     top_verbs = []
     top_adj = []
 
-    for i in range(len(pos_terms)):
+    for i in range(len(pos)):
         try:
             # Get 100 similar words using pos_terms and neg_terms
-            sim_words = word2vec.wv.most_similar(positive=pos_terms, negative=neg_terms, topn=100)
+            sim_words = word2vec.wv.most_similar(positive=pos, negative=neg, topn=100)
 
             # print("TERM={}:".format(pos_terms[i]))
             for j in range(len(sim_words)):
@@ -112,16 +109,30 @@ def get_top_sim_words(text, top_w = 12):
 
                 # Get top results for each list.
                 if pos_tag in ('NN', 'NNP', 'NNS') and len(top_nouns) < top_w:
-                    top_nouns.append((sim_words[j][0], pos_tag))
+                    top_nouns.append((sim_words[j][0], sim_words[j][1], pos_tag))
                 elif pos_tag in ('VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ') and len(top_verbs) < top_w:
-                    top_verbs.append((sim_words[j][0], pos_tag))
+                    top_verbs.append((sim_words[j][0], sim_words[j][1], pos_tag))
                 elif pos_tag in ('JJ', 'JJR', 'JJS') and len(top_adj) < top_w:
-                    top_adj.append((sim_words[j][0], pos_tag))
+                    top_adj.append((sim_words[j][0], sim_words[j][1], pos_tag))
 
         except KeyError as e:
             print("ERROR! One or more keywords were not recognized as a vocabulary word! {}".format(e.args))
             exit(1)
     return [top_nouns, top_verbs, top_adj]
+
+
+def write_to_json(filepath, data):
+    json_data = []
+    for i in range(len(data)):
+        for j in data[i]:
+            json_data.append([{"WORD": j[0], "SIMILARITY": j[1], "POS": j[2]}])
+
+    try:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(json_data, f, ensure_ascii=False, indent=2)
+            print("Successfully wrote data to {}".format(filepath))
+    except FileNotFoundError as e:
+        print("ERROR! File not found at {}!".format(e.filename))
 
 
 def main():
@@ -133,10 +144,18 @@ def main():
         except urllib.error.HTTPError as e:
             print("HTTP Error {} while trying to open {}".format(e.code, e.url))
             continue
-        top_results = get_top_sim_words(all_words, 12)
+
+        pos_terms = get_pos_terms()
+        neg_terms = get_neg_terms()
+
+        top_results = get_top_nvj(all_words, 12, pos_terms, neg_terms)
         print("\nTOP RESULTS FOR {}".format(u))
         print("NOUNS: {}\nVERBS: {}\nADJECTIVES: {}\n".format(top_results[0], top_results[1], top_results[2]))
+
+        path = "{}_results.json".format(str(pos_terms))
+        write_to_json(path, top_results)
 
 
 if __name__ == '__main__':
     main()
+
