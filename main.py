@@ -7,6 +7,7 @@ Intelligent search through text to find nouns, verbs, and adjectives associated 
 import bs4 as bs
 import urllib.request
 import urllib.error
+from urllib.request import Request, urlopen
 import re
 import nltk
 from nltk.corpus import stopwords
@@ -20,7 +21,7 @@ def get_url():
     """
     :return: List of URLs from user input separated by spaces.
     """
-    
+
     return [i for i in input("Enter URLs (separated by spaces): ").split()]
 
 
@@ -48,7 +49,9 @@ def parse_url(url):
     :return: List of all non-stopwords within a text.
     """
 
-    scraped_data = urllib.request.urlopen(url)
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+
+    scraped_data = urlopen(req)
 
     article = scraped_data.read()
 
